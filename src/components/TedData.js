@@ -1,53 +1,54 @@
 import React, { Fragment } from 'react';
+import { CheckboxField, TextField } from 'tpz-crud';
 
-const TedData = props => (
-  <Fragment>
-    <div className="form-group row">
-      <label className="col-md-4" htmlFor="field-ted-endpoint-confirm">Endpoint de confirmação</label>
-      <input
-        className="form-control col-md-6"
-        id="field-ted-endpoint-confirm"
-        name="ted.endpointConfirm"
-        type="text"
+const TedData = (props) => {
+  const { ted } = props.data.settings;
+
+  return (
+    <Fragment>
+
+      <TextField
+        id='field-ted-endpoint-confirm'
+        label='Endpoint de confirmação'
+        name='settings.ted.endpointConfirm'
+        onChange={props.onChange}
+        value={ted.endpointConfirm}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-4" htmlFor="field-ted-security-string">Header de autenticação</label>
-      <input
-        className="form-control col-md-6"
-        id="field-ted-security-string"
-        name="ted.securityString"
-        type="text"
+
+      <TextField
+        id='field-ted-security-string'
+        label='Header de autenticação'
+        name='settings.ted.securityString'
+        onChange={props.onChange}
+        value={ted.securityString}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-4" htmlFor="field-ted-account">Contas bancárias (separadas por virgula)</label>
-      <input
-        className="form-control col-md-6"
-        id="field-ted-account"
-        name="ted.account"
-        type="text"
+
+      <TextField
+        id='field-ted-account'
+        label='Contas bancárias (separadas por virgula)'
+        name='settings.ted.account'
+        onChange={props.onChange}
+        value={ted.account}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-4" htmlFor="field-ted-code-identifier">Código de identificação</label>
-      <input
-        className="form-control col-md-6"
-        id="field-ted-code-identifier"
-        name="ted.codeIdentifier"
-        type="text"
+
+      <TextField
+        id='field-ted-code-identifier'
+        label='Código de identificação'
+        name='settings.ted.codeIdentifier'
+        onChange={props.onChange}
+        value={ted.codeIdentifier}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-4" htmlFor="field-ted-allow-transfer-to-different-recipients">Endpoint de confirmação</label>
-      <input
-        checked={props.allowTransferToDifferentRecipients}
-        className='form-check-input col-md-6'
+
+      <CheckboxField
         id='field-ted-allow-transfer-to-different-recipients'
-        type='checkbox'
+        label='Permite transferências para outros recipientes'
+        name='settings.ted.allowTransferToDifferentRecipients'
+        onChange={props.onChange}
+        value={ted.allowTransferToDifferentRecipients}
       />
-    </div>
-  </Fragment>
-);
+
+    </Fragment>
+  );
+};
 
 export default TedData;

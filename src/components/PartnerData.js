@@ -1,44 +1,46 @@
 import React, { Fragment } from 'react';
+import { TextField } from 'tpz-crud';
 
-const PartnerData = () => (
-  <Fragment>
-    <div className="form-group row">
-      <label className="col-md-3" htmlFor="field-client-id">Client ID</label>
-      <input
-        className="form-control col-md-6"
-        id="field-client-id"
-        name="clientId"
-        type="text"
+const PartnerData = (props) => {
+  const { data, onChange } = props;
+
+  return (
+    <Fragment>
+
+      <TextField
+        id='field-client-id'
+        label='Client ID'
+        name='clientId'
+        onChange={onChange}
+        value={data.clientId}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-3" htmlFor="field-document">Documento</label>
-      <input
-        className="form-control col-md-6"
-        id="field-document"
-        name="document"
-        type="text"
+
+      <TextField
+        id='field-document'
+        label='Documento'
+        name='document'
+        onChange={onChange}
+        value={data.document}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-3" htmlFor="field-social-name">Nome social</label>
-      <input
-        className="form-control col-md-6"
-        id="field-social-name"
-        name="socialName"
-        type="text"
+
+      <TextField
+        id='field-social-name'
+        label='Nome Social'
+        name='socialName'
+        onChange={onChange}
+        value={data.socialName}
       />
-    </div>
-    <div className="form-group row">
-      <label className="col-md-3" htmlFor="field-code-client">Código de cliente</label>
-      <input
-        className="form-control col-md-6"
-        id="field-code-client"
-        name="codeClient"
-        type="text"
+
+      <TextField
+        id='field-code-client'
+        label='Código de cliente'
+        name='codeClient'
+        onChange={onChange}
+        value={data.codeClient}
       />
-    </div>
-  </Fragment>
-);
+
+    </Fragment>
+  );
+};
 
 export default PartnerData;
