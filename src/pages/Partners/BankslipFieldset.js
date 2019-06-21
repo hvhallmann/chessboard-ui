@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const BankslipData = () => (
-  <Fragment />
+  <fieldset />
 );
 
 export default BankslipData;
