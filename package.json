@@ -1,6 +1,6 @@
 {
   "name": "neide-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "classname": "0.0.0",
@@ -12,7 +12,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "tpz-crud": "file:../tpz-crud"
+    "tpz-crud": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
+import { List } from 'tpz-crud';
 
 import PartnerForm from './PartnerForm';
-import List from '../../components/List';
 import config from './config';
 import Menu from '../../components/Menu';
 import fixture from '../../fixture';
