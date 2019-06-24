@@ -5,6 +5,7 @@ import _set from 'lodash.set';
 import TedFieldset from './TedFieldset';
 import BankslipFieldset from './BankslipFieldset';
 import BankstatementFieldset from './BankstatementFieldset';
+import BankslipRegistrationFieldset from './BankslipRegistrationFieldset';
 
 const PartnerForm = (props) => {
   const [doc, setDoc] = useState(props.doc);
@@ -68,6 +69,10 @@ const PartnerForm = (props) => {
 
         <Card title='Bankstatement'>
           <BankstatementFieldset data={doc} onChange={onChange} />
+        </Card>
+
+        <Card>
+          <BankslipRegistrationFieldset data={doc} onChange={onChange} />
         </Card>
       </div>
       <br />
