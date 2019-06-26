@@ -6,15 +6,17 @@ import _clone from 'lodash.clonedeep';
 import { List } from 'tpz-crud';
 
 import neideApi from '../../neideApi';
-import PartnerForm from './PartnerForm';
-import config from './config';
 import Menu from '../../components/Menu';
 import fixture from '../../fixture';
+import RolesForm from './RolesForm';
+
+const columns = [{
+  label: 'Papel', id: 'name', name: 'name'
+}];
 
 const Partners = () => {
   const [docs, setDocs] = useState(fixture);
   const [doc, setDoc] = useState(undefined);
-  const [columns, setColumns] = useState(config.columns);
 
   useEffect(() => {
     // neideApi.get('/partner')
@@ -23,15 +25,14 @@ const Partners = () => {
 
   const onCancel = () => {
     setDoc(undefined);
-    setColumns(config.columns);
   };
 
-  const post = docToPost => neideApi.post('/partner', docToPost).then((postedDoc) => {
+  const post = docToPost => neideApi.post('/role', docToPost).then((postedDoc) => {
     setDocs(_clone(docs).push(postedDoc));
     onCancel();
   });
 
-  const patch = (docToPatch, idx) => neideApi.patch('/partner', docToPatch).then((patchedDoc) => {
+  const patch = (docToPatch, idx) => neideApi.patch('/role', docToPatch).then((patchedDoc) => {
     const newDocs = _clone(docs);
     newDocs[idx] = patchedDoc;
     setDocs(newDocs);
@@ -46,12 +47,10 @@ const Partners = () => {
   const onEdit = (id) => {
     const docToEdit = docs.find(d => d._id === id);
     setDoc(_clone(docToEdit));
-    setColumns(columns.filter(c => c.main));
   };
 
   const onNew = () => {
-    setDoc(_clone(config.defaultDoc));
-    setColumns(columns.filter(c => c.main));
+    setDoc({});
   };
 
   return (
@@ -62,7 +61,7 @@ const Partners = () => {
         </nav>
 
         <div className={classname({ 'col-md-3': !!doc, 'col-md-10': !doc })}>
-          <h2>Parceiros</h2>
+          <h2>Papéis</h2>
           <button
             className='btn btn-link'
             onClick={onNew}
@@ -83,11 +82,10 @@ const Partners = () => {
         {doc && (
           <div className='col-md-7'>
             <br />
-            <PartnerForm
+            <RolesForm
               doc={doc}
               onSave={onSave}
-              onCancel={onCancel}
-            />
+              onCancel={onCancel}/>
           </div>
         )}
       </div>
