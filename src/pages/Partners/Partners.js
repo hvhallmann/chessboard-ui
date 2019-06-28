@@ -1,34 +1,56 @@
-import React, { useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect } from 'react';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
+
 import { List } from 'tpz-crud';
 
+import neideApi from '../../neideApi';
 import PartnerForm from './PartnerForm';
 import config from './config';
 import Menu from '../../components/Menu';
-import fixture from '../../fixture';
+// import fixture from './fixture';
 
 const Partners = () => {
-  const [docs, setDocs] = useState(fixture);
+  const [docs, setDocs] = useState(undefined);
   const [doc, setDoc] = useState(undefined);
   const [columns, setColumns] = useState(config.columns);
+
+  useEffect(() => {
+    neideApi.get('/partner')
+      .then(setDocs);
+  }, []);
 
   const onCancel = () => {
     setDoc(undefined);
     setColumns(config.columns);
   };
 
+  const post = docToPost => neideApi.post('/partner', docToPost).then((postedDoc) => {
+    setDocs(_clone(docs).push(postedDoc));
+    onCancel();
+  });
+
+  const patch = (docToPatch, idx) => neideApi.patch('/partner', docToPatch).then((patchedDoc) => {
+    const newDocs = _clone(docs);
+    newDocs[idx] = patchedDoc;
+    setDocs(newDocs);
+    onCancel();
+  });
+
   const onSave = (docToSave) => {
     const idx = docs.findIndex(item => item._id === docToSave._id);
-    if (idx === -1) docs.push(docToSave);
-    else docs[idx] = docToSave;
-    setDocs(docs);
-    onCancel();
+    return (idx === -1) ? post(docToSave) : patch(docToSave, idx);
   };
 
   const onEdit = (id) => {
     const docToEdit = docs.find(d => d._id === id);
     setDoc(_clone(docToEdit));
+    setColumns(columns.filter(c => c.main));
+  };
+
+  const onNew = () => {
+    setDoc(_clone(config.defaultDoc));
     setColumns(columns.filter(c => c.main));
   };
 
@@ -41,6 +63,15 @@ const Partners = () => {
 
         <div className={classname({ 'col-md-3': !!doc, 'col-md-10': !doc })}>
           <h2>Parceiros</h2>
+          <button
+            className='btn btn-link'
+            onClick={onNew}
+            style={{ padding: 0 }}
+            type='button'
+          >
+            <span className='oi oi-plus' />
+          </button>
+
           <List
             docs={docs}
             columns={columns}
@@ -51,7 +82,7 @@ const Partners = () => {
 
         {doc && (
           <div className='col-md-7'>
-            <br/>
+            <br />
             <PartnerForm
               doc={doc}
               onSave={onSave}
