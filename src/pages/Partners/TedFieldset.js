@@ -10,7 +10,7 @@ const TedData = props => (
       label='Endpoint de confirmação'
       name='settings.ted.endpointConfirm'
       onChange={props.onChange}
-      value={_get(props.data, 'settings.ted.endpointConfirm')}
+      value={_get(props.data, 'settings.ted.endpointConfirm', '')}
     />
 
     <TextField
@@ -18,7 +18,7 @@ const TedData = props => (
       label='Header de autenticação'
       name='settings.ted.securityString'
       onChange={props.onChange}
-      value={_get(props.data, 'settings.ted.securityString')}
+      value={_get(props.data, 'settings.ted.securityString', '')}
     />
 
     <TextField
@@ -26,7 +26,7 @@ const TedData = props => (
       label='Contas bancárias (separadas por virgula)'
       name='settings.ted.account'
       onChange={props.onChange}
-      value={_get(props.data, 'settings.ted.account')}
+      value={_get(props.data, 'settings.ted.account', '')}
     />
 
     <TextField
@@ -34,7 +34,7 @@ const TedData = props => (
       label='Código de identificação'
       name='settings.ted.codeIdentifier'
       onChange={props.onChange}
-      value={_get(props.data, 'settings.ted.codeIdentifier')}
+      value={_get(props.data, 'settings.ted.codeIdentifier', '')}
     />
 
     <CheckboxField
@@ -42,7 +42,7 @@ const TedData = props => (
       label='Permite transferências para outros recipientes'
       name='settings.ted.allowTransferToDifferentRecipients'
       onChange={props.onChange}
-      value={_get(props.data, 'settings.ted.allowTransferToDifferentRecipients')}
+      value={_get(props.data, 'settings.ted.allowTransferToDifferentRecipients', false)}
     />
 
   </Fragment>
