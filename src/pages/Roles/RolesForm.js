@@ -26,7 +26,15 @@ const PartnerForm = (props) => {
         label='Papel'
         name='name'
         onChange={onChange}
-        value={doc.clientId}
+        value={doc.name}
+      />
+
+      <TextField
+        id='field-network-group'
+        label='Grupo de rede'
+        name='networkGroup'
+        onChange={onChange}
+        value={doc.networkGroup}
       />
 
       <br />

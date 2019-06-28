@@ -9,16 +9,16 @@ import neideApi from '../../neideApi';
 import PartnerForm from './PartnerForm';
 import config from './config';
 import Menu from '../../components/Menu';
-import fixture from '../../fixture';
+// import fixture from './fixture';
 
 const Partners = () => {
-  const [docs, setDocs] = useState(fixture);
+  const [docs, setDocs] = useState(undefined);
   const [doc, setDoc] = useState(undefined);
   const [columns, setColumns] = useState(config.columns);
 
   useEffect(() => {
-    // neideApi.get('/partner')
-    //   .then(setDocs);
+    neideApi.get('/partner')
+      .then(setDocs);
   }, []);
 
   const onCancel = () => {

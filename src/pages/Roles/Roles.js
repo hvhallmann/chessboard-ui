@@ -7,24 +7,29 @@ import { List } from 'tpz-crud';
 
 import neideApi from '../../neideApi';
 import Menu from '../../components/Menu';
-import fixture from '../../fixture';
+import fixture from './fixture';
 import RolesForm from './RolesForm';
 
-const columns = [{
-  label: 'Papel', id: 'name', name: 'name'
-}];
+const initialColumns = [
+  {
+    label: 'Papel', id: 'name', name: 'name', main: true
+  },
+  { label: 'Grupo de rede', id: 'network-group', name: 'networkGroup' }
+];
 
 const Partners = () => {
   const [docs, setDocs] = useState(fixture);
   const [doc, setDoc] = useState(undefined);
+  const [columns, setColumns] = useState(initialColumns);
 
   useEffect(() => {
-    // neideApi.get('/partner')
+    // neideApi.get('/role')
     //   .then(setDocs);
   }, []);
 
   const onCancel = () => {
     setDoc(undefined);
+    setColumns(initialColumns);
   };
 
   const post = docToPost => neideApi.post('/role', docToPost).then((postedDoc) => {
@@ -47,10 +52,12 @@ const Partners = () => {
   const onEdit = (id) => {
     const docToEdit = docs.find(d => d._id === id);
     setDoc(_clone(docToEdit));
+    setColumns(columns.filter(c => c.main));
   };
 
   const onNew = () => {
     setDoc({});
+    setColumns(columns.filter(c => c.main));
   };
 
   return (
