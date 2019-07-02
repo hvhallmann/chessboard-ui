@@ -9,7 +9,7 @@ const Index = () => (
         <Menu />
       </nav>
       <div className='col-md-10'>
-        <h2>NEtwork IDEntidication</h2>
+        <h2>NEtwork IDEntification</h2>
         <p>Benvindo!</p>
       </div>
     </div>

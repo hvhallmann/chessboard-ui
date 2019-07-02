@@ -71,7 +71,7 @@ const PartnerForm = (props) => {
           <BankstatementFieldset data={doc} onChange={onChange} />
         </Card>
 
-        <Card>
+        <Card title='Bankslip Registration'>
           <BankslipRegistrationFieldset data={doc} onChange={onChange} />
         </Card>
       </div>
