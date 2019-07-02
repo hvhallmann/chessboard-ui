@@ -31,7 +31,7 @@ const PartnerForm = (props) => {
         label='Client ID'
         name='clientId'
         onChange={onChange}
-        value={doc.clientId}
+        value={doc.clientId || ''}
       />
 
       <TextField
@@ -39,7 +39,7 @@ const PartnerForm = (props) => {
         label='Documento'
         name='document'
         onChange={onChange}
-        value={doc.document}
+        value={doc.document || ''}
       />
 
       <TextField
@@ -47,7 +47,7 @@ const PartnerForm = (props) => {
         label='Nome Social'
         name='socialName'
         onChange={onChange}
-        value={doc.socialName}
+        value={doc.socialName || ''}
       />
 
       <TextField
@@ -55,7 +55,7 @@ const PartnerForm = (props) => {
         label='Código de cliente'
         name='codeClient'
         onChange={onChange}
-        value={doc.codeClient}
+        value={doc.codeClient || ''}
       />
 
       <div className='accordion'>
