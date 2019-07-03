@@ -17,8 +17,8 @@ Deploy.feature.QA:
   stage: feature-test
   before_script:
     - git submodule update --remote
-    - chmod +x ./pipe-ms/*.sh    
-    - ./pipe-ms/set_variables.sh 
+    - chmod +x ./pipe-ms/*.sh
+    - ./pipe-ms/set_variables.sh
   script:
     - ./pipe-ms/envfile.sh
     - ./pipe-ms/remove.sh
@@ -140,7 +140,7 @@ node02.QA.Cluster.Wipe:
   allow_failure: false
   when: on_success
 
-.node03.QA.Cluster.Wipe:
+node03.QA.Cluster.Wipe:
   stage: wipe
   before_script:
     - git submodule update --remote
@@ -203,7 +203,6 @@ PRD.Cluster.Deploy:
     - ./pipe-ms/deploy.sh
   only: 
     - master
-    - tag
   except:
     - /^dev.*$/
   tags: 
@@ -211,7 +210,7 @@ PRD.Cluster.Deploy:
   allow_failure: false
   when: manual
 
-.node01.PRD.Cluster.Wipe:
+node01.PRD.Cluster.Wipe:
   stage: wipe
   before_script:
     - git submodule update --remote
@@ -220,16 +219,15 @@ PRD.Cluster.Deploy:
   script:
     - ./pipe-ms/remove.sh
   only: 
-    - dev
-    - tag
-  except:
     - master
+  except:
+    - /^dev.*$/
   tags: 
     - sw01
   allow_failure: false
   when: on_success
 
-.node02.PRD.Cluster.Wipe:
+node02.PRD.Cluster.Wipe:
   stage: wipe
   before_script:
     - git submodule update --remote
@@ -238,16 +236,15 @@ PRD.Cluster.Deploy:
   script:
     - ./pipe-ms/remove.sh
   only: 
-    - dev
-    - tag
-  except:
     - master
+  except:
+    - /^dev.*$/
   tags: 
     - sw02
   allow_failure: false
   when: on_success
 
-  .node03.PRD.Cluster.Wipe:
+node03.PRD.Cluster.Wipe:
   stage: wipe
   before_script:
     - git submodule update --remote
@@ -256,10 +253,9 @@ PRD.Cluster.Deploy:
   script:
     - ./pipe-ms/remove.sh
   only: 
-    - dev
-    - tag
-  except:
     - master
+  except:
+    - /^dev.*$/
   tags: 
     - sw03
   allow_failure: false
