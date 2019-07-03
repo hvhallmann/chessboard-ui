@@ -27,7 +27,9 @@ const Partners = () => {
   };
 
   const post = docToPost => neideApi.post('/partner', docToPost).then((postedDoc) => {
-    setDocs(_clone(docs).push(postedDoc));
+    const newDocs = _clone(docs);
+    newDocs.push(postedDoc);
+    setDocs(newDocs);
     onCancel();
   });
 

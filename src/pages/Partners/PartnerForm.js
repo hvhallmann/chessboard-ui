@@ -43,6 +43,14 @@ const PartnerForm = (props) => {
       />
 
       <TextField
+        id='field-document-type'
+        label='Tipo Documento'
+        name='documentType'
+        onChange={onChange}
+        value={doc.documentType || ''}
+      />
+
+      <TextField
         id='field-social-name'
         label='Nome Social'
         name='socialName'
