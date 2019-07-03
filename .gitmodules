@@ -1,0 +1,4 @@
+[submodule "pipe-ms"]
+	path = pipe-ms
+	url = git@git.btfinanceira.com.br:Pipeline/pipe-ms.git
+	branch = master
