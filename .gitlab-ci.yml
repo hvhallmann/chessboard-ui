@@ -1,0 +1,300 @@
+variables:
+    CI_DEBUG_TRACE: "false"
+    GIT_SUBMODULE_STRATEGY: recursive
+    PORT: 8888
+
+stages:
+- feature-test
+- merge-dev
+- build
+- developer
+- deploy
+- wipe
+- integration-tests
+- approve
+
+Deploy.feature.QA:
+  stage: feature-test
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/remove.sh
+    - ./pipe-ms/deploy.sh
+  only:
+    - /fea.*$/
+  tags:
+    - deploying 
+  allow_failure: false
+  when: on_success
+
+Dev.Merge:
+  stage: merge-dev  
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/merge-request.sh
+  after_script:
+    - ./pipe-ms/remove.sh
+  only:
+    - /fea.*$/
+  tags:
+    - deploying 
+  allow_failure: false
+  when: manual
+
+Dev.Build:
+  stage: build
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/remove.sh
+    - ./pipe-ms/build.sh
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev   
+  except:
+    - master        
+  allow_failure: false
+  when: on_success
+
+QA.Dev.Deploy:
+  stage: developer
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/remove.sh
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/deploy.sh
+  only:
+    - dev
+    - tag
+  except:
+    - master
+  tags:
+    - deploying    
+  allow_failure: false
+  when: on_success
+
+QA.Cluster.Deploy:
+  stage: deploy
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/deploy.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - sw-deploying
+  allow_failure: false
+  when: manual
+
+node01.QA.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - swhmg01
+  allow_failure: false
+  when: on_success
+
+node02.QA.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh 
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - swhmg02
+  allow_failure: false
+  when: on_success
+
+.node03.QA.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh 
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - swhmg03
+  allow_failure: false
+  when: on_success
+
+QA.Approve:
+  stage: approve
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:    
+    - ./pipe-ms/merge-request.sh
+  only:
+    - dev
+    - tag
+  except:
+    - master
+  allow_failure: false
+  when: manual
+
+PRD.Build:
+  stage: build
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/remove.sh
+    - ./pipe-ms/build.sh
+    - ./pipe-ms/remove.sh
+  only: 
+    - master
+  except:
+    - /^dev.*$/
+  allow_failure: false
+  when: on_success
+
+PRD.Cluster.Deploy:
+  stage: deploy  
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/deploy.sh
+  only: 
+    - master
+    - tag
+  except:
+    - /^dev.*$/
+  tags: 
+    - prod
+  allow_failure: false
+  when: manual
+
+.node01.PRD.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - sw01
+  allow_failure: false
+  when: on_success
+
+.node02.PRD.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh 
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - sw02
+  allow_failure: false
+  when: on_success
+
+  .node03.PRD.Cluster.Wipe:
+  stage: wipe
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh 
+    - ./pipe-ms/set_variables.sh
+  script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - dev
+    - tag
+  except:
+    - master
+  tags: 
+    - sw03
+  allow_failure: false
+  when: on_success
+
+Fix.Deploy:
+  stage: feature-test
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:
+    - ./pipe-ms/envfile.sh
+    - ./pipe-ms/remove.sh
+    - ./pipe-ms/deploy.sh
+  only: 
+    - /fix.*$/   
+  tags:
+    - deploying
+  allow_failure: false
+  when: on_success
+
+Fix.Approve:
+  stage: build
+  before_script:
+    - git submodule update --remote
+    - chmod +x ./pipe-ms/*.sh    
+    - ./pipe-ms/set_variables.sh 
+  script:    
+    - ./pipe-ms/merge-request.sh
+  after_script:
+    - ./pipe-ms/remove.sh
+  only: 
+    - /fix.*$/
+  except:
+    - master        
+  allow_failure: false
+  when: manual
