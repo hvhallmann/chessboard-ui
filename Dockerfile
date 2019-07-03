@@ -28,7 +28,6 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY package.json /usr/src/app/package.json
-COPY healthcheck.sh /usr/src/app/healthcheck.sh
 COPY .env /usr/src/app/.env
 
 RUN npm install 
@@ -52,10 +51,7 @@ COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 COPY --from=builder /usr/src/app/src/run_app.sh /usr/tools/run_app.sh
 RUN chmod +x /usr/tools/run_app.sh
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
-EXPOSE 8094
-
-HEALTHCHECK --interval=1m --timeout=50000ms --start-period=100s --retries=30 CMD exit $(./../healthcheck.sh) || exit 1;
-
+EXPOSE 8096
 
 ENTRYPOINT ["sh", "-c", "/usr/tools/run_app.sh"] 
 
