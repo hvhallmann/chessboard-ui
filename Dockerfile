@@ -27,6 +27,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 #RUN apk add --no-cache git
 
 # install and cache app dependencies
+COPY .npmrc .
 COPY package.json /usr/src/app/package.json
 COPY .env /usr/src/app/.env
 
