@@ -49,8 +49,8 @@ FROM docker-registry.btfinanceira.com.br/nginx:1.15.10-alpine as stage2
 USER root
 RUN mkdir /usr/tools
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-COPY --from=builder /usr/src/app/src/run_app.sh /usr/tools/run_app.sh
-RUN chmod +x /usr/tools/run_app.sh
+# COPY --from=builder /usr/src/app/src/run_app.sh /usr/tools/run_app.sh
+# RUN chmod +x /usr/tools/run_app.sh
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8096
 
