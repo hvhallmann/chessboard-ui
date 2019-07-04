@@ -31,8 +31,8 @@ COPY .npmrc .
 COPY package.json /usr/src/app/package.json
 COPY .env /usr/src/app/.env
 
+RUN npm install react-scripts@3.0.1 -g 
 RUN npm install 
-#RUN npm install react-scripts@1.1.1 -g 
 RUN npm run build
 # start app
 # RUN if [ "$YII_ENVIRONMENT" = "Development"]; \
@@ -49,8 +49,8 @@ FROM docker-registry.btfinanceira.com.br/nginx:1.15.10-alpine as stage2
 USER root
 RUN mkdir /usr/tools
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-# COPY --from=builder /usr/src/app/src/run_app.sh /usr/tools/run_app.sh
-# RUN chmod +x /usr/tools/run_app.sh
+COPY --from=builder /usr/src/app/src/run_app.sh /usr/tools/run_app.sh
+RUN chmod +x /usr/tools/run_app.sh
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8096
 
