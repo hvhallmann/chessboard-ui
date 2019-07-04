@@ -33,12 +33,12 @@ COPY .env /usr/src/app/.env
 
 RUN npm install 
 #RUN npm install react-scripts@1.1.1 -g 
-
+RUN npm run build
 # start app
-RUN if [ "$YII_ENVIRONMENT" = "Development"]; \
-    then npm run build-dev; \
-    else npm run build; \
-fi 
+# RUN if [ "$YII_ENVIRONMENT" = "Development"]; \
+#     then npm run build-dev; \
+#     else npm run build; \
+# fi 
 
 # remove app files
 RUN rm -rf /node_modules && npm cache clean --force
