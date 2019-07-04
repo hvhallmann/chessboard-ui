@@ -1,6 +1,5 @@
 # base image
 FROM docker-registry.btfinanceira.com.br/node-react as builder
-
 USER root
 
 # variables
