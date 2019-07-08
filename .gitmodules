@@ -1,4 +1,0 @@
-[submodule "pipe-ms"]
-	path = pipe-ms
-	url = ../../Pipeline/pipe-ms.git
-	branch = master

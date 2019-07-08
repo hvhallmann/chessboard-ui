@@ -3,11 +3,11 @@ FROM docker-registry.btfinanceira.com.br/node-react as builder
 USER root
 
 # variables
-ARG YII_ENVIRONMENT
-ENV environment=${YII_ENVIRONMENT}
+ARG AMBIENTE
+ENV environment=${AMBIENTE}
 
 # see variable
-RUN echo $YII_ENVIRONMENT
+RUN echo $AMBIENTE
 
 # set working directory
 RUN mkdir /usr/src
@@ -34,7 +34,7 @@ RUN npm install react-scripts@3.0.1 -g
 RUN npm install 
 RUN npm run build
 # start app
-# RUN if [ "$YII_ENVIRONMENT" = "Development"]; \
+# RUN if [ "$AMBIENTE" = "Development"]; \
 #     then npm run build-dev; \
 #     else npm run build; \
 # fi 
