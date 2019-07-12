@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
 
-import { List } from 'tpz-crud';
+import { List } from 'tpz-react-components';
 
 import neideApi from '../../neideApi';
 import PartnerForm from './PartnerForm';

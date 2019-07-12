@@ -35,16 +35,21 @@ const CRUD = (props) => {
     onCancel();
   });
 
-  const patch = (docToPatch, idx) => neideApi.patch(props.resourceUri, docToPatch)
-    .then((patchedDoc) => {
-      const newDocs = _clone(docs);
-      newDocs[idx] = patchedDoc;
-      setDocs(newDocs);
-      onCancel();
-    });
+  const patch = (docToPatch, idx) => {
+    const clone = Object.assign({}, docToPatch);
+    delete clone._id;
+    delete clone.__v;
+    return neideApi
+      .patch(`${props.resourceUri}/${docToPatch._id}`, clone)
+      .then((patchedDoc) => {
+        const newDocs = _clone(docs);
+        newDocs[idx] = patchedDoc;
+        setDocs(newDocs);
+        onCancel();
+      });
+  };
 
   const onSave = () => {
-    console.log('---', doc);
     const idx = docs.findIndex(item => item._id === doc._id);
     return (idx === -1) ? post(doc) : patch(doc, idx);
   };
@@ -94,7 +99,7 @@ const CRUD = (props) => {
       case 'MultiSelectField':
         return (
           <MultiSelectField
-          key={field.id}
+            key={field.id}
             label={field.label}
             name={field.name}
             options={field.options}

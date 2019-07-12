@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
+import { CRUD } from 'tpz-react-components';
 
 import Menu from '../../components/Menu';
-import CRUD from '../../components/CRUD';
+import neideApi from '../../neideApi';
 
 import { listColumns, formFields } from './config';
 
@@ -14,6 +15,7 @@ const Roles = () => (
       </nav>
 
       <CRUD
+        api={neideApi}
         resourceUri='/role'
         label='Papéis'
         listColumns={listColumns}
