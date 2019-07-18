@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Card, TextField } from 'tpz-crud';
+import { Card, TextField, SelectField } from 'tpz-crud';
 import _set from 'lodash.set';
 
 import TedFieldset from './TedFieldset';
 import BankslipFieldset from './BankslipFieldset';
 import BankstatementFieldset from './BankstatementFieldset';
 import BankslipRegistrationFieldset from './BankslipRegistrationFieldset';
+
+const documentOptions = [
+  { id: 'CNPJ', label: 'CNPJ' },
+  { id: 'CPF', label: 'CPF' }
+];
+
 
 const PartnerForm = (props) => {
   const [doc, setDoc] = useState(props.doc);
@@ -42,12 +48,13 @@ const PartnerForm = (props) => {
         value={doc.document || ''}
       />
 
-      <TextField
+      <SelectField
         id='field-document-type'
         label='Tipo Documento'
         name='documentType'
         onChange={onChange}
         value={doc.documentType || ''}
+        options={documentOptions}
       />
 
       <TextField
@@ -56,6 +63,14 @@ const PartnerForm = (props) => {
         name='socialName'
         onChange={onChange}
         value={doc.socialName || ''}
+      />
+
+      <TextField
+        id='field-trading-name'
+        label='Nome Fantasia'
+        name='tradingName'
+        onChange={onChange}
+        value={doc.tradingName || ''}
       />
 
       <TextField
