@@ -55,5 +55,5 @@ EXPOSE 8096
 
 ENTRYPOINT ["sh", "-c", "/usr/tools/run_app.sh"] 
 
-#CMD ["nginx", "-g", "daemon off;"]
+HEALTHCHECK --interval=1m --timeout=500ms --start-period=1s --retries=3 CMD exit $(./healthcheck.sh) || exit 1;
 
