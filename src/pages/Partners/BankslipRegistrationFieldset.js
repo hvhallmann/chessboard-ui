@@ -10,15 +10,15 @@ const paymentIndicators = [
 ];
 
 const states = [
-  { id: 1, label: 'AC' }, { id: 2, label: 'AL' }, { id: 3, label: 'AP' },
-  { id: 4, label: 'AM' }, { id: 5, label: 'BA' }, { id: 6, label: 'CE' },
-  { id: 7, label: 'DF' }, { id: 8, label: 'ES' }, { id: 9, label: 'GO' },
-  { id: 11, label: 'MA' }, { id: 12, label: 'MT' }, { id: 13, label: 'MS' },
-  { id: 14, label: 'MG' }, { id: 15, label: 'PA' }, { id: 16, label: 'PB' },
-  { id: 17, label: 'PR' }, { id: 18, label: 'PE' }, { id: 19, label: 'PI' },
-  { id: 20, label: 'RJ' }, { id: 21, label: 'RN' }, { id: 22, label: 'RS' },
-  { id: 23, label: 'RO' }, { id: 24, label: 'RR' }, { id: 25, label: 'SC' },
-  { id: 26, label: 'SP' }, { id: 27, label: 'SE' }, { id: 27, label: 'TO' }
+  { id: 'AC', label: 'AC' }, { id: 'AL', label: 'AL' }, { id: 'AP', label: 'AP' },
+  { id: 'AM', label: 'AM' }, { id: 'BA', label: 'BA' }, { id: 'CE', label: 'CE' },
+  { id: 'DF', label: 'DF' }, { id: 'ES', label: 'ES' }, { id: 'GO', label: 'GO' },
+  { id: 'MA', label: 'MA' }, { id: 'MT', label: 'MT' }, { id: 'MS', label: 'MS' },
+  { id: 'MG', label: 'MG' }, { id: 'PA', label: 'PA' }, { id: 'PB', label: 'PB' },
+  { id: 'PR', label: 'PR' }, { id: 'PE', label: 'PE' }, { id: 'PI', label: 'PI' },
+  { id: 'RJ', label: 'RJ' }, { id: 'RN', label: 'RN' }, { id: 'RS', label: 'RS' },
+  { id: 'RO', label: 'RO' }, { id: 'RR', label: 'RR' }, { id: 'SC', label: 'SC' },
+  { id: 'SP', label: 'SP' }, { id: 'SE', label: 'SE' }, { id: 'TO', label: 'TO' }
 ];
 
 const BankslipRegData = props => (
