@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
+import { useAlert } from 'react-alert';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
 
@@ -16,6 +17,8 @@ const Partners = () => {
   const [doc, setDoc] = useState(undefined);
   const [columns, setColumns] = useState(config.columns);
 
+  const alert = useAlert();
+
   useEffect(() => {
     neideApi.get('/partner')
       .then(setDocs);
@@ -26,22 +29,45 @@ const Partners = () => {
     setColumns(config.columns);
   };
 
-  const post = docToPost => neideApi.post('/partner', docToPost).then((postedDoc) => {
+  const post = docToPost => neideApi.post(
+    '/partner',
+    docToPost
+  ).then((postedDoc) => {
     const newDocs = _clone(docs);
     newDocs.push(postedDoc);
     setDocs(newDocs);
     onCancel();
-  });
+    return 'done';
+  })
+    .catch((axiosError) => {
+      alert.error(axiosError
+        && axiosError.response
+        && axiosError.response.data
+        && axiosError.response.data.message);
+      return 'fail';
+    });
 
-  const patch = (docToPatch, idx) => neideApi.patch('/partner', docToPatch).then((patchedDoc) => {
-    const newDocs = _clone(docs);
-    newDocs[idx] = patchedDoc;
-    setDocs(newDocs);
-    onCancel();
-  });
+  const patch = (
+    docToPatch,
+    idx
+  ) => neideApi.patch(`/partner/${docToPatch.clientId}`, docToPatch)
+    .then((patchedDoc) => {
+      const newDocs = _clone(docs);
+      newDocs[idx] = patchedDoc;
+      setDocs(newDocs);
+      onCancel();
+      return 'done';
+    })
+    .catch((axiosError) => {
+      alert.error(axiosError
+        && axiosError.response
+        && axiosError.response.data
+        && axiosError.response.data.message);
+      return 'fail';
+    });
 
   const onSave = (docToSave) => {
-    const idx = docs.findIndex(item => item._id === docToSave._id);
+    const idx = docs && docs.findIndex(item => item._id === docToSave._id);
     return (idx === -1) ? post(docToSave) : patch(docToSave, idx);
   };
 
@@ -57,6 +83,7 @@ const Partners = () => {
   };
 
   return (
+
     <div className='container-fluid'>
       <div className='row'>
         <nav className='col-md-2' style={{ backgroundColor: '#f8f9fa' }}>
