@@ -10,7 +10,15 @@ const Index = () => (
       </nav>
       <div className='col-md-10'>
         <h2>NEtwork IDEntification</h2>
-        <p>Benvindo!</p>
+        <p>Bem-vindo!</p>
+        {
+          (process.env.NODE_ENV !== 'production')
+            ? <div>
+              <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+          <small>You are pointing this application to <b>{process.env.REACT_APP_API_URL}</b></small>
+              </div>
+            : null
+        }
       </div>
     </div>
   </div>

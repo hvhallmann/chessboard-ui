@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, TextField, SelectField } from 'tpz-crud';
+import { useAlert } from 'react-alert';
 import _set from 'lodash.set';
 
 import TedFieldset from './TedFieldset';
@@ -16,13 +17,20 @@ const documentOptions = [
 const PartnerForm = (props) => {
   const [doc, setDoc] = useState(props.doc);
 
+  const alert = useAlert();
+
   const onChange = (name, value) => {
     setDoc({ ..._set(doc, name, value) });
   };
 
   const onSave = () => {
-    props.onSave(doc);
-    setDoc({});
+    props.onSave(doc)
+      .then((response) => {
+        if (response === 'done') {
+          alert.success('Record saved successfully!');
+          setDoc({});
+        }
+      });
   };
 
   const onCancel = () => {
