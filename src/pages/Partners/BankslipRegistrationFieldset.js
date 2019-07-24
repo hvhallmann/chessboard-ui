@@ -44,6 +44,13 @@ const BankslipRegData = props => (
       onChange={props.onChange}
       value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.deadline', 0), 10)}
     />
+    <NumberField
+      id='settings-bankslip-registration-deadlineCashin'
+      label='Decurso de Prazo Cash in'
+      name='settings.registeredBankslip.deadlineCashin'
+      onChange={props.onChange}
+      value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.deadlineCashin', 0), 10)}
+    />
     <TextField
       id='settings-ted-endpoint-address'
       label='Endereço'
@@ -79,6 +86,14 @@ const BankslipRegData = props => (
       name='settings.registeredBankslip.divergentPaymentIndicator'
       onChange={props.onChange}
       value={String(_get(props.data, 'settings.registeredBankslip.divergentPaymentIndicator'), '')}
+      options={paymentIndicators}
+    />
+    <SelectField
+      id='settings-bankslip-registration-payment-indicator-cashin'
+      label='Indicador Pagamento Divergente Cash in'
+      name='settings.registeredBankslip.divergentPaymentIndicatorCashin'
+      onChange={props.onChange}
+      value={String(_get(props.data, 'settings.registeredBankslip.divergentPaymentIndicatorCashin'), '')}
       options={paymentIndicators}
     />
   </Fragment>
