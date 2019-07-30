@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import classname from 'classname';
 import { TextField, NumberField, SelectField } from 'tpz-crud';
 import _get from 'lodash.get';
 
@@ -23,6 +24,14 @@ const states = [
 
 const BankslipRegData = props => (
   <Fragment>
+    <div
+      className={classname({
+        alert: true,
+        'alert-info': _get(props.data, 'settings.registeredBankslip.situationCIP', false)
+      })}
+      role="alert">
+      {_get(props.data, 'settings.registeredBankslip.situationCIP', '')}
+    </div>
     <NumberField
       id='settings-bankslip-registration-partner-id'
       label='ID Parceiro'
@@ -103,6 +112,14 @@ const BankslipRegData = props => (
       value={String(_get(props.data, 'settings.registeredBankslip.divergentPaymentIndicatorCashin'), '')}
       options={paymentIndicators}
     />
+    <div
+      className={classname({
+        alert: true,
+        'alert-warning': _get(props.data, 'settings.registeredBankslip.errorMessage', false)
+      })}
+      role="alert">
+      {_get(props.data, 'settings.registeredBankslip.errorMessage', '')}
+    </div>
   </Fragment>
 );
 
