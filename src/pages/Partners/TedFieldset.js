@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { CheckboxField, TextField } from 'tpz-crud';
+import { CheckboxField, TextField } from 'tpz-react-components';
 import _get from 'lodash.get';
 
 const TedData = props => (
