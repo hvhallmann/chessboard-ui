@@ -1,14 +1,14 @@
 const services = [
-  { id: '0001', label: 'GET /partner', group: 'neide-api' },
-  { id: '0002', label: 'POST /partner', group: 'neide-api' },
-  { id: '0003', label: 'PATCH /partner', group: 'neide-api' },
-  { id: '0004', label: 'DELETE /partner', group: 'neide-api' },
-  { id: '0005', label: 'GET /role', group: 'neide-api' },
-  { id: '0006', label: 'POST /role', group: 'neide-api' },
-  { id: '0007', label: 'PATCH /role', group: 'neide-api' },
-  { id: '0008', label: 'DELETE /role', group: 'neide-api' },
-  { id: '0009', label: 'GET /ted', group: 'ted-api' },
-  { id: '0010', label: 'POST /ted', group: 'ted-api' },
+  { id: 'GET /partner',    label: 'GET /partner',     group: 'neide-api' },
+  { id: 'POST /partner',   label: 'POST /partner',    group: 'neide-api' },
+  { id: 'PATCH /partner',  label: 'PATCH /partner',   group: 'neide-api' },
+  { id: 'DELETE /partner', label: 'DELETE /partner',  group: 'neide-api' },
+  { id: 'GET /role',       label: 'GET /role',        group: 'neide-api' },
+  { id: 'POST /role',      label: 'POST /role',       group: 'neide-api' },
+  { id: 'PATCH /role',     label: 'PATCH /role',      group: 'neide-api' },
+  { id: 'DELETE /role',    label: 'DELETE /role',     group: 'neide-api' },
+  { id: 'GET /ted',        label: 'GET /ted',         group: 'ted-api' },
+  { id: 'POST /ted',       label: 'POST /ted',        group: 'ted-api' },
 ];
 
 const listColumns = [
