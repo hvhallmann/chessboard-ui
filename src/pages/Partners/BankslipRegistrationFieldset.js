@@ -37,6 +37,13 @@ const BankslipRegData = props => (
       onChange={props.onChange}
       value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.walletId', 0), 10)}
     />
+    <TextField
+      id='settings-bankslip-registration-account-number'
+      label='Número Conta'
+      name='settings.registeredBankslip.accountNumber'
+      onChange={props.onChange}
+      value={_get(props.data, 'settings.registeredBankslip.accountNumber', '')}
+    />
     <NumberField
       id='settings-bankslip-registration-deadline'
       label='Decurso de Prazo'
