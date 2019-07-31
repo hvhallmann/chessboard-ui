@@ -1,30 +1,19 @@
 # base image
 FROM docker-registry.btfinanceira.com.br/node-react as builder
 USER root
-
 # variables
 ARG AMBIENTE
 ENV environment=${AMBIENTE}
-
 # see variable
 RUN echo $AMBIENTE
-
 # set working directory
-RUN mkdir /usr/src
-RUN mkdir /usr/src/app
-
+RUN mkdir /usr/src && mkdir /usr/src/app
 # SET THIS
 COPY src /usr/src/app/src
 COPY public /usr/src/app/public
-
 WORKDIR /usr/src/app
-
 # add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-# require git for jessie-slim version
-#RUN apk add --no-cache git
-
 # install and cache app dependencies
 COPY .npmrc .
 COPY package.json /usr/src/app/package.json
@@ -54,6 +43,4 @@ COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8096
 
 ENTRYPOINT ["sh", "-c", "/usr/tools/run_app.sh"] 
-
-HEALTHCHECK --interval=1m --timeout=500ms --start-period=1s --retries=3 CMD exit $(./healthcheck.sh) || exit 1;
 

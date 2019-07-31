@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import classname from 'classname';
 import { TextField, NumberField, SelectField } from 'tpz-crud';
 import _get from 'lodash.get';
 
@@ -23,6 +24,14 @@ const states = [
 
 const BankslipRegData = props => (
   <Fragment>
+    <div
+      className={classname({
+        alert: true,
+        'alert-info': _get(props.data, 'settings.registeredBankslip.situationCIP', false)
+      })}
+      role="alert">
+      {_get(props.data, 'settings.registeredBankslip.situationCIP', '')}
+    </div>
     <NumberField
       id='settings-bankslip-registration-partner-id'
       label='ID Parceiro'
@@ -37,12 +46,26 @@ const BankslipRegData = props => (
       onChange={props.onChange}
       value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.walletId', 0), 10)}
     />
+    <TextField
+      id='settings-bankslip-registration-account-number'
+      label='Número Conta'
+      name='settings.registeredBankslip.accountNumber'
+      onChange={props.onChange}
+      value={_get(props.data, 'settings.registeredBankslip.accountNumber', '')}
+    />
     <NumberField
       id='settings-bankslip-registration-deadline'
       label='Decurso de Prazo'
       name='settings.registeredBankslip.deadline'
       onChange={props.onChange}
       value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.deadline', 0), 10)}
+    />
+    <NumberField
+      id='settings-bankslip-registration-deadlineCashin'
+      label='Decurso de Prazo Cash in'
+      name='settings.registeredBankslip.deadlineCashin'
+      onChange={props.onChange}
+      value={Number.parseInt(_get(props.data, 'settings.registeredBankslip.deadlineCashin', 0), 10)}
     />
     <TextField
       id='settings-ted-endpoint-address'
@@ -81,6 +104,22 @@ const BankslipRegData = props => (
       value={String(_get(props.data, 'settings.registeredBankslip.divergentPaymentIndicator'), '')}
       options={paymentIndicators}
     />
+    <SelectField
+      id='settings-bankslip-registration-payment-indicator-cashin'
+      label='Indicador Pagamento Divergente Cash in'
+      name='settings.registeredBankslip.divergentPaymentIndicatorCashin'
+      onChange={props.onChange}
+      value={String(_get(props.data, 'settings.registeredBankslip.divergentPaymentIndicatorCashin'), '')}
+      options={paymentIndicators}
+    />
+    <div
+      className={classname({
+        alert: true,
+        'alert-warning': _get(props.data, 'settings.registeredBankslip.errorMessage', false)
+      })}
+      role="alert">
+      {_get(props.data, 'settings.registeredBankslip.errorMessage', '')}
+    </div>
   </Fragment>
 );
 

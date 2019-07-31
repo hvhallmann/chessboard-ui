@@ -83,7 +83,7 @@ const PartnerForm = (props) => {
 
       <TextField
         id='field-code-client'
-        label='Código de cliente'
+        label='Código cliente Core Banking'
         name='codeClient'
         onChange={onChange}
         value={doc.codeClient || ''}
