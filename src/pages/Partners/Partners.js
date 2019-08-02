@@ -4,7 +4,7 @@ import { useAlert } from 'react-alert';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
 
-import { List } from 'tpz-crud';
+import { List } from 'tpz-react-components';
 
 import neideApi from '../../neideApi';
 import PartnerForm from './PartnerForm';

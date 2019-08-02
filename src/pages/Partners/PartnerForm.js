@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, TextField, SelectField } from 'tpz-crud';
 import { useAlert } from 'react-alert';
+import { Card, TextField, SelectField } from 'tpz-react-components';
 import _set from 'lodash.set';
 
 import TedFieldset from './TedFieldset';
