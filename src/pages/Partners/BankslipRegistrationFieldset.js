@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import classname from 'classname';
-import { TextField, NumberField, SelectField } from 'tpz-crud';
+import { TextField, NumberField, SelectField } from 'tpz-react-components';
 import _get from 'lodash.get';
 
 const paymentIndicators = [

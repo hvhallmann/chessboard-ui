@@ -9,7 +9,7 @@ import {
   NumberField,
   SelectField,
   TextField
-} from 'tpz-crud';
+} from 'tpz-react-components';
 
 import neideApi from '../neideApi';
 import MultiSelectField from './MultiSelectField';
