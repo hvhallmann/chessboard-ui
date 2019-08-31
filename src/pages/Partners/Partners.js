@@ -4,13 +4,12 @@ import { useAlert } from 'react-alert';
 import classname from 'classname';
 import _clone from 'lodash.clonedeep';
 
-import { List } from 'tpz-react-components';
+import List from '../../components/List';
 
 import neideApi from '../../neideApi';
 import PartnerForm from './PartnerForm';
 import config from './config';
 import Menu from '../../components/Menu';
-// import fixture from './fixture';
 
 const Partners = () => {
   const [docs, setDocs] = useState(undefined);
@@ -20,8 +19,8 @@ const Partners = () => {
   const alert = useAlert();
 
   useEffect(() => {
-    neideApi.get('/partner')
-      .then(setDocs);
+    neideApi.get('/users')
+      .then(docx => setDocs(docx.data));
   }, []);
 
   const onCancel = () => {

@@ -50,7 +50,7 @@ const PartnerList = (props) => {
     <table className='table table-striped table-hover'>
       <thead>
         <tr>
-          <th>Ações</th>
+          <th>Actions</th>
           {props.columns.map(renderTH)}
         </tr>
       </thead>

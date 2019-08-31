@@ -1,36 +1,16 @@
 import React, { useState } from 'react';
-import { useAlert } from 'react-alert';
-import { Card, TextField, SelectField } from 'tpz-react-components';
 import _set from 'lodash.set';
+import Card from '../../components/Card';
+import TextField from '../../components/TextField';
 
-import TedFieldset from './TedFieldset';
-import BankslipFieldset from './BankslipFieldset';
-import BankstatementFieldset from './BankstatementFieldset';
 import BankslipRegistrationFieldset from './BankslipRegistrationFieldset';
-
-const documentOptions = [
-  { id: 'CNPJ', label: 'CNPJ' },
-  { id: 'CPF', label: 'CPF' }
-];
 
 
 const PartnerForm = (props) => {
   const [doc, setDoc] = useState(props.doc);
 
-  const alert = useAlert();
-
   const onChange = (name, value) => {
     setDoc({ ..._set(doc, name, value) });
-  };
-
-  const onSave = () => {
-    props.onSave(doc)
-      .then((response) => {
-        if (response === 'done') {
-          alert.success('Record saved successfully!');
-          setDoc({});
-        }
-      });
   };
 
   const onCancel = () => {
@@ -41,74 +21,44 @@ const PartnerForm = (props) => {
   return (
     <form>
       <TextField
-        id='field-client-id'
-        label='Client ID'
-        name='clientId'
+        id='field-id'
+        label='User ID'
+        name='id'
         onChange={onChange}
-        value={doc.clientId || ''}
+        value={doc.id || ''}
       />
 
       <TextField
-        id='field-document'
-        label='Documento'
-        name='document'
+        id='field-login'
+        label='Login'
+        name='login'
         onChange={onChange}
-        value={doc.document || ''}
-      />
-
-      <SelectField
-        id='field-document-type'
-        label='Tipo Documento'
-        name='documentType'
-        onChange={onChange}
-        value={doc.documentType || ''}
-        options={documentOptions}
+        value={doc.login || ''}
       />
 
       <TextField
-        id='field-social-name'
-        label='Nome Social'
-        name='socialName'
+        id='field-html-url'
+        label='Profile URL'
+        name='htmlUrl'
         onChange={onChange}
-        value={doc.socialName || ''}
+        value={doc.html_url || ''}
       />
 
       <TextField
-        id='field-trading-name'
-        label='Nome Fantasia'
-        name='tradingName'
+        id='field-date-login'
+        label='Date Login Creation'
+        name='dateLogin'
         onChange={onChange}
-        value={doc.tradingName || ''}
-      />
-
-      <TextField
-        id='field-code-client'
-        label='Código cliente Core Banking'
-        name='codeClient'
-        onChange={onChange}
-        value={doc.codeClient || ''}
+        value={doc.dateLogin || ''}
       />
 
       <div className='accordion'>
-        <Card title='TED'>
-          <TedFieldset data={doc} onChange={onChange} />
-        </Card>
-
-        <Card title='Bankslip'>
-          <BankslipFieldset data={doc} onChange={onChange} />
-        </Card>
-
-        <Card title='Bankstatement'>
-          <BankstatementFieldset data={doc} onChange={onChange} />
-        </Card>
-
         <Card title='Bankslip Registration'>
           <BankslipRegistrationFieldset data={doc} onChange={onChange} />
         </Card>
       </div>
       <br />
-      <button type="button" className="btn btn-primary" onClick={onSave}>Salvar</button>&nbsp;
-      <button type="button" className="btn btn-link" onClick={onCancel}>Cancelar</button>
+      <button type="button" className="btn btn-link" onClick={onCancel}>Cancel</button>
 
     </form>
   );
