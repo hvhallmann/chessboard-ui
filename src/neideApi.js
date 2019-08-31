@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// neide => network identifier
 const neideApi = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 });

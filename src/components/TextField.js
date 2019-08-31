@@ -21,6 +21,7 @@ const TextField = (props) => {
         onChange={onChange}
         type='text'
         value={props.value}
+        disabled={true}
       />
 
     </div>

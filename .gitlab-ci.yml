@@ -1,9 +1,0 @@
-variables:
-    CI_DEBUG_TRACE: "false"
-    GIT_SUBMODULE_STRATEGY: recursive
-    PORT: 8067    
-
-include:
-  - project: 'Pipeline/pipe-node-react'
-    ref: v1.5.0
-    file: '.pipe-ci.yml'

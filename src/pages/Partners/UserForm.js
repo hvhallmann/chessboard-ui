@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import _set from 'lodash.set';
-import Card from '../../components/Card';
+import List from '../../components/ListWithoutActions';
 import TextField from '../../components/TextField';
+import config from './config';
 
-import BankslipRegistrationFieldset from './BankslipRegistrationFieldset';
-
-
-const PartnerForm = (props) => {
+const UserForm = (props) => {
   const [doc, setDoc] = useState(props.doc);
+  const [columns] = useState(config.repos);
 
   const onChange = (name, value) => {
     setDoc({ ..._set(doc, name, value) });
@@ -25,7 +24,7 @@ const PartnerForm = (props) => {
         label='User ID'
         name='id'
         onChange={onChange}
-        value={doc.id || ''}
+        value={doc.id.toString() || ''}
       />
 
       <TextField
@@ -49,14 +48,15 @@ const PartnerForm = (props) => {
         label='Date Login Creation'
         name='dateLogin'
         onChange={onChange}
-        value={doc.dateLogin || ''}
+        value={doc.created_at || ''}
       />
 
-      <div className='accordion'>
-        <Card title='Bankslip Registration'>
-          <BankslipRegistrationFieldset data={doc} onChange={onChange} />
-        </Card>
-      </div>
+      <br />
+        <h3>Repos</h3>
+        <List
+          docs={doc.repos}
+          columns={columns}
+        />
       <br />
       <button type="button" className="btn btn-link" onClick={onCancel}>Cancel</button>
 
@@ -64,4 +64,4 @@ const PartnerForm = (props) => {
   );
 };
 
-export default PartnerForm;
+export default UserForm;

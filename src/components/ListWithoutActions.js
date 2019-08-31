@@ -5,7 +5,7 @@ import classname from 'classname';
 
 import _get from 'lodash.get';
 
-const PartnerList = (props) => {
+const List = (props) => {
   const docs = props.docs || [];
 
   const selected = doc => props.doc && doc._id === props.doc._id;
@@ -14,7 +14,6 @@ const PartnerList = (props) => {
     <th key={`th${idx}`}>
       <div
         className='clickable' role='button' tabIndex='0'
-        onClick={() => props.onSort && props.onSort(column)}
         onKeyDown={() => { }}
       >
         {column.label}
@@ -32,16 +31,6 @@ const PartnerList = (props) => {
 
   const renderTR = cols => (doc, idx) => (
     <tr key={`tr${idx}`} className={classname({ 'table-primary': selected(doc) })}>
-      <td>
-        <button
-          className='btn btn-link'
-          onClick={() => props.onEdit(doc.id)}
-          style={{ padding: 0 }}
-          type='button'
-        >
-          <span className='oi oi-pencil'></span>
-        </button>
-      </td>
       {cols.map(renderTD(doc))}
     </tr>
   );
@@ -50,7 +39,6 @@ const PartnerList = (props) => {
     <table className='table table-striped table-hover'>
       <thead>
         <tr>
-          <th>Actions</th>
           {props.columns.map(renderTH)}
         </tr>
       </thead>
@@ -61,12 +49,9 @@ const PartnerList = (props) => {
   );
 };
 
-PartnerList.propTypes = {
+List.propTypes = {
   columns: PropTypes.array.isRequired,
   docs: PropTypes.array,
-  doc: PropTypes.object,
-  onEdit: PropTypes.func,
-  onSort: PropTypes.func
 };
 
-export default PartnerList;
+export default List;

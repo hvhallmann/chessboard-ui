@@ -9,8 +9,7 @@ const Index = () => (
         <Menu />
       </nav>
       <div className='col-md-10'>
-        <h2>NEtwork IDEntification</h2>
-        <p>Bem-vindo!</p>
+        <h2>Welcome!</h2>
         {
           (process.env.NODE_ENV !== 'production')
             ? <div>
