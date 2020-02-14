@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Menu from '../components/Menu';
+import Board from './Board';
 
 const Index = () => (
   <div className='container-fluid'>
@@ -9,7 +10,10 @@ const Index = () => (
         <Menu />
       </nav>
       <div className='col-md-10'>
-        <h2>Welcome!</h2>
+        <h2>Welcome, lets play a game?</h2>
+
+        <Board />
+
         {
           (process.env.NODE_ENV !== 'production')
             ? <div>

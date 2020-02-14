@@ -1,9 +1,8 @@
-## shaw-ui
+# chessboard-ui
 
-React UI to shaw-api
+React UI to chessboard-ui
 
-# Env Files
-### What other .env files can be used?
+## What other .env files can be used
 
 * .env: Default.
 * .env.local: Local overrides. This file is loaded for all environments except test.
