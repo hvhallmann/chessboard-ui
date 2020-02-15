@@ -1,0 +1,20 @@
+.Chessboard
+{
+  padding:10px;
+  background-color: #5A79B1;
+  border:5px solid black;
+}
+
+.Tile {
+  width: 64px;
+	height: 64px;
+	background-color: #D2AEAE;
+}
+
+.Tile.black {
+	background-color: black;
+}
+.Tile:hover {
+  background-color: tomato;
+}
+
