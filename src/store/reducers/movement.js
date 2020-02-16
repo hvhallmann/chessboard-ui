@@ -1,6 +1,11 @@
 export const movementDefault = {
   movement: 'a1',
-  firstMoves: []
+  firstMoves: [],
+  chessboard: [
+    [{ name: 'a7' }, { name: 'a2', isBlack: true }, { name: 'a3' }],
+    [{ name: 'b1' }, { name: 'b2', isBlack: true }, { name: 'b3' }]
+  ],
+  moreMoves: [],
 };
 
 export const SELECT = 'SELECT';
@@ -13,6 +18,9 @@ const movementReducer = (state = movementDefault, action) => {
     case SELECT:
       return {
         ...state,
+        moreMoves: [
+          [{ name: 'd1' }, { name: 'd2', isBlack: false }, { name: 'd3', isBlack: true }],
+        ],
         movement: action.selected,
         firstMoves: action.payload
       };
@@ -27,7 +35,7 @@ const movementReducer = (state = movementDefault, action) => {
 };
 
 export const selectAction = (selected, payload) => {
-  // console.log('requiem', payload);
+  console.log('requiem', payload);
   return {
     type: SELECT,
     selected,
