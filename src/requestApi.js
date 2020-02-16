@@ -1,13 +1,12 @@
 import axios from 'axios';
 
-// neide => network identifier
-const neideApi = axios.create({
+const requestApi = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 });
 
-neideApi.interceptors.response.use(res => (res.data ? res.data : res));
+requestApi.interceptors.response.use(res => (res.data ? res.data : res));
 
-neideApi.defaults.headers.post['Content-Type'] = 'application/json';
-neideApi.defaults.headers.patch['Content-Type'] = 'application/json';
+requestApi.defaults.headers.post['Content-Type'] = 'application/json';
+requestApi.defaults.headers.patch['Content-Type'] = 'application/json';
 
-export default neideApi;
+export default requestApi;
