@@ -3,11 +3,12 @@
   padding:10px;
   background-color: #5A79B1;
   border:5px solid black;
+  box-shadow: 10px 5px 5px black;
 }
 
 .Tile {
-  height: 6vw;
-  width: 6vw;
+  height: 9vw;
+  width: 9vw;
 	background-color: #D2AEAE;
 }
 

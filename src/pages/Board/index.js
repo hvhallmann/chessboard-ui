@@ -50,7 +50,8 @@ const Container = () => {
 
   const onSelect = (selected) => {
     onClearArray();
-    const upperSelected = selected.target.innerHTML.toUpperCase();
+    // const upperSelected = selected.target.innerHTML.toUpperCase();
+    const upperSelected = selected.toUpperCase();
     requestApi.get(`api/movements/options?selected=${upperSelected}`)
       .then((data) => {
         const copy = [...rows];
@@ -68,8 +69,15 @@ const Container = () => {
   };
 
   return (
-    <div className='container-fluid'>
+    <div className='container'>
+      <div className='col-md-10'>
+        <h2>Knight Chess</h2>
+      </div>
       <Board onSelect={onSelect} rows={rows}/>
+      <br/>
+      <button type="button" onClick={() => onClearArray()}>
+        <a href="/">Help</a>
+      </button>
       <button type="button" onClick={() => onClearArray()}>
         Clear
       </button>
