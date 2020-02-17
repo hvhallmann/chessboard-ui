@@ -7,10 +7,10 @@ const Row = (props) => {
 
   return (
     <div className='row'>{
-      tiles
+      tiles && tiles
         .map(tile => <Tile onSelect={props.onSelect}
-          lowlight={tile.lowlight} highlight={tile.highlight}
-          black={tile.isBlack} key={tile.name} name={tile.name} />)
+          lowlight={tile && tile.lowlight} highlight={tile && tile.highlight}
+          black={tile && tile.isBlack} key={tile && tile.name} name={tile && tile.name} />)
     }
     </div>
   );
