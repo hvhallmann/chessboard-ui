@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classname from 'classname';
 import './style.css';
 
 const Tile = (props) => {
-  const [knight, setKnight] = useState('');
   const styleName = classname({
     'col-xs-1': true,
     Tile: true,
     highlight: props.highlight,
     lowlight: props.lowlight,
     black: props.black,
+    knight: props.knight
   });
 
   const onClick = () => {
-    setKnight(String.fromCharCode(9816));
     props.onSelect(props.name);
   };
 
@@ -27,7 +26,7 @@ const Tile = (props) => {
       onClick={onClick}
       tabIndex={0}
       className={styleName}>
-      {knight}
+      {props.knight}
     </div>
   );
 };

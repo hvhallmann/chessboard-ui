@@ -15,7 +15,8 @@ const Container = () => {
         const obj = {
           name: `${horizontal[x]}${vertical[y]}`,
           isBlack: ((x % 2 === 0 && y % 2 !== 0) || (x % 2 !== 0 && y % 2 === 0)),
-          value: `${realHorizon[x]}${vertical[y]}`
+          value: `${realHorizon[x]}${vertical[y]}`,
+          knight: '',
         };
         line.push(obj);
       }
@@ -43,14 +44,16 @@ const Container = () => {
         const obj = col;
         obj.highlight = false;
         obj.lowlight = false;
+        obj.knight = '';
       });
     });
     setRows(copy);
   };
 
+  const charToPosition = x => realHorizon[horizontal.indexOf(x)];
+
   const onSelect = (selected) => {
     onClearArray();
-    // const upperSelected = selected.target.innerHTML.toUpperCase();
     const upperSelected = selected.toUpperCase();
     requestApi.get(`api/movements/options?selected=${upperSelected}`)
       .then((data) => {
@@ -63,6 +66,12 @@ const Container = () => {
             tile.lowlight = true;
           }
         });
+
+        const x = charToPosition(selected.split('')[0]);
+        const y = selected.split('')[1];
+
+        const toHorse = findOnInitialData(`${x}${y}`);
+        toHorse.knight = String.fromCharCode(9816);
 
         setRows(copy);
       });

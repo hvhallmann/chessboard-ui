@@ -8,8 +8,13 @@ const Row = (props) => {
     <div className='row align-row'>{
       tiles && tiles
         .map(tile => <Tile onSelect={props.onSelect}
-          lowlight={tile && tile.lowlight} highlight={tile && tile.highlight}
-          black={tile && tile.isBlack} key={tile && tile.name} name={tile && tile.name} />)
+          lowlight={tile.lowlight}
+          highlight={tile.highlight}
+          black={tile.isBlack}
+          key={tile.name}
+          name={tile.name}
+          knight={tile.knight}
+        />)
     }
     </div>
   );
