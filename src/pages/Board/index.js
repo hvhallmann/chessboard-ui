@@ -69,7 +69,7 @@ const Container = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='new-container'>
       <div className='col-md-10'>
         <h2>Knight Chess</h2>
       </div>

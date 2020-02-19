@@ -4,9 +4,8 @@ import './style.css';
 
 const Row = (props) => {
   const [tiles] = useState(props.tiles);
-
   return (
-    <div className='ml-2 row'>{
+    <div className='row align-row'>{
       tiles && tiles
         .map(tile => <Tile onSelect={props.onSelect}
           lowlight={tile && tile.lowlight} highlight={tile && tile.highlight}

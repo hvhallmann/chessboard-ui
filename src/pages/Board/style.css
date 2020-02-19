@@ -1,29 +1,42 @@
 .Chessboard
 {
   padding:10px;
-  background-color: #5A79B1;
+  background-color: cornflowerblue;
   border:5px solid black;
   box-shadow: 10px 5px 5px black;
+}
+
+.new-container {
+  height: 60vw;
+  width: 72vw;
+  transition: 0.5s;
+  box-shadow: -20px 20px 20px rgba(0,0,0,.5);
+}
+
+.align-row {
+  padding-left: 4vw;
 }
 
 .Tile {
   height: 8vw;
   width: 8vw;
-	background-color: #D2AEAE;
+  background-color: white;
+  font-size: 78px;
+  font-weight: bolder;
 }
 
 .Tile.black {
 	background-color: black;
 }
 .Tile.highlight {
-  background-color: yellow;
-  -webkit-box-shadow: 0px 0px 25px 10px #ffa;
-  box-shadow: 0px 0px 25px 10px #ffa;
+  background-color: chocolate;
+  -webkit-box-shadow: 0px 0px 25px 10px #fff;
+  box-shadow: 0px 0px 25px 10px #fff;
 }
 .Tile.lowlight {
-  background-color: yellowgreen;
-  -webkit-box-shadow: 0px 0px 25px 10px #ffa;
-  box-shadow: 0px 0px 25px 10px #ffa;
+  background-color: cadetblue;
+  -webkit-box-shadow: 0px 0px 25px 10px #fff;
+  box-shadow: 0px 0px 25px 10px #fff;
 }
 .Tile:hover {
   background-color: tomato;

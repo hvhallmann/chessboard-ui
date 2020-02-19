@@ -21,7 +21,12 @@ const Tile = (props) => {
     // console.log('keydown', ev.target.innerHTML);
   };
   return (
-    <div onKeyDown={onKeyDown} role="menuitem" onClick={onClick} tabIndex={0} className={styleName}>
+    <div
+      onKeyDown={onKeyDown}
+      role="menuitem"
+      onClick={onClick}
+      tabIndex={0}
+      className={styleName}>
       {knight}
     </div>
   );
