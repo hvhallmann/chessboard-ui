@@ -12,9 +12,13 @@ npm run start:dev
 
 ### Deploying
 
-run `npm run build`, and deploy the /build folder
+if you are going to deploy in a different SaaS from Heroku
+> run `npm run build`, and deploy the /build folder
 
-### What other .env files can be used
+Otherwise, once you push to heroku, it will run postinstall hooks, and will start the server as mentioned on Procfile;
+on setting you have to set NODE_ENV for production and point the API address on variable **REACT_APP_API_URL**
+
+### What other .env files can be used on react-create-app
 
 * .env: Default.
 * .env.local: Local overrides. This file is loaded for all environments except test.
@@ -26,3 +30,9 @@ Files on the left have more priority than files on the right:
 * npm start: .env.development.local, .env.development, .env.local, .env
 * npm run build: .env.production.local, .env.production, .env.local, .env
 * npm test: .env.test.local, .env.test, .env (note .env.local is missing)
+
+### Branches
+
+Currently we are just using master
+
+PRs are welcome!
