@@ -17,8 +17,9 @@
     height: 6vmin;
     width: 6vmin;
     background-color: white;
-    font-size: 6vmin;
+    font-size: 4vmin;
     font-weight: bolder;
+    text-align: -webkit-center;
   }
 
   .img-size {
@@ -37,8 +38,9 @@
     height: 11vw;
     width: 11vw;
     background-color: white;
-    font-size: 6vw;
+    font-size: 7vw;
     font-weight: bolder;
+    text-align: -webkit-center;
   }
 }
 

@@ -7,6 +7,7 @@ const Wizard = () => {
       <div className='col-md-10'>
         <h2>Welcome, lets play a game?</h2>
       </div>
+      <div className="alert alert-dark" role="alert"/>
       <div className="card">
         <img className="card-img-top img-size" src={knight} alt="Card knight cap"/>
         <div className="card-body">
@@ -16,8 +17,8 @@ const Wizard = () => {
           <p className="card-text">* Once the square is selected, the system will show the next possible knight move in chocolate color.</p>
           <p className="card-text">* And it will also show in cadetblue color, the possibilities related to the second turn of you knight.</p>
           <p className="card-text">* Once your move is done, your next move is going to show you possibilities again.</p>
-          <a href="/board" class="card-link">Jump Wizard</a>
-          <a href="/introduction" class="card-link">Next Page</a>
+          <a href="/board" className="card-link">Jump Wizard</a>
+          <a href="/introduction" className="card-link">Next Page</a>
         </div>
       </div>
     </div>
