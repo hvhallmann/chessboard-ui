@@ -2,28 +2,50 @@
 {
   padding:10px;
   background-color: cornflowerblue;
-  border:5px solid black;
-  box-shadow: 10px 5px 5px black;
+  border:7px solid black;
+  box-shadow: 20px 20px 20px rgba(0,0,0,.5);
 }
 
-.new-container {
-  height: 60vw;
-  width: 72vw;
-  transition: 0.5s;
-  box-shadow: -20px 20px 20px rgba(0,0,0,.5);
+@media (min-width: 768px) {
+  .new-container {
+    height: 60vmin;
+    width: 60vmin;
+    transition: 0.5s;
+  }
+
+  .Tile {
+    height: 6vmin;
+    width: 6vmin;
+    background-color: white;
+    font-size: 6vmin;
+    font-weight: bolder;
+  }
+
+  .img-size {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .new-container {
+    height: 100vmin;
+    width: 100vmin;
+    transition: 0.5s;
+  }
+
+  .Tile {
+    height: 11vw;
+    width: 11vw;
+    background-color: white;
+    font-size: 6vw;
+    font-weight: bolder;
+  }
 }
 
 .align-row {
   padding-left: 4vw;
 }
 
-.Tile {
-  height: 8vw;
-  width: 8vw;
-  background-color: white;
-  font-size: 6vw;
-  font-weight: bolder;
-}
 
 .Tile.black {
 	background-color: black;

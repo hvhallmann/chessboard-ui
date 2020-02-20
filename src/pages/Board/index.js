@@ -27,6 +27,7 @@ const Container = () => {
   };
 
   const [rows, setRows] = useState(onStart());
+  const [movements, setMovements] = useState([]);
 
   const findOnInitialData = (value) => {
     let answer = {};
@@ -48,6 +49,7 @@ const Container = () => {
       });
     });
     setRows(copy);
+    setMovements([]);
   };
 
   const charToPosition = x => realHorizon[horizontal.indexOf(x)];
@@ -74,6 +76,9 @@ const Container = () => {
         toHorse.knight = String.fromCharCode(9816);
 
         setRows(copy);
+
+        requestApi.get('api/movements/all')
+          .then(datum => setMovements(datum.movements));
       });
   };
 
@@ -84,12 +89,24 @@ const Container = () => {
       </div>
       <Board onSelect={onSelect} rows={rows}/>
       <br/>
-      <button type="button" onClick={() => onClearArray()}>
-        <a href="/">Help</a>
-      </button>
-      <button type="button" onClick={() => onClearArray()}>
-        Clear
-      </button>
+      <div className='row'>
+        <div className='col'>
+        <h4>Knight Movements History</h4>
+          <ul className="list-group">
+            {
+              movements && movements.map((movement, ind) => <li key={ind} className="list-group-item">{movement.position}</li>)
+            }
+          </ul>
+        </div>
+        <div className='col'>
+          <button type="button" className="btn btn-link" onClick={() => onClearArray()}>
+            <a href="/">Help</a>
+          </button>
+          <button type="button" className="btn btn-primary" onClick={() => onClearArray()}>
+            Clear
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
